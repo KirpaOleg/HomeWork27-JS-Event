@@ -26,7 +26,6 @@ btn.addEventListener('click', () => {
   const textArr = text.value.split(' ');
   // console.log(textArr);
   let tempStr = '';
-  let longWord = '';  // для второго задания
   for (let i = 0; i < textArr.length; i++) {
     // console.log(textArr[i]);
     // console.log(text.value);
@@ -34,16 +33,40 @@ btn.addEventListener('click', () => {
       ${tempStr}
         <input class="textarea" type="text" value="${textArr[i]}">
     `;
-    if (longWord < textArr[i].length) {  // для второго задания
-      longWord = textArr[i];   // для второго задания
+  }
+ 
+  box.innerHTML = tempStr;
+
+  let longWord = 0;  // Второе задание
+  textArr.sort((a, b) => b.length - a.length);
+  for (let i = 0; i < textArr.length; i++) {
+    if (textArr[i].length > longWord) {  // Второе задание
+      longWord = textArr[i];   // Второе задание
     }
-    console.log(`Cамое длинное слово в Массиве - ${longWord}`)  // для второго задания
+    // console.log(tempSort);
+    console.log(`Cамое длинное слово в Массиве - ${longWord}`)  // Второе задание
+    
   }
 
-  box.innerHTML = tempStr;
-  let limit = textArr.join('');
+  let testOffer = textArr.join(' '); // Начало третего задания
+  // console.log(testOffer);
 
-  console.log(limit);
+  if (testOffer.length === 30) {
+    console.log(`Символов в массиве = 30: ${testOffer}`)
+  }
+
+  if (testOffer.length > 30) {
+    testOffer = testOffer.slice(0, 30)
+    console.log(`Символов в массиве > 30 - Лишнее отрежим: ${testOffer}`)
+  }
+
+  if (testOffer.length < 30) {
+    while (testOffer.length < 30) {
+      testOffer += testOffer;
+    }
+    testOffer = testOffer.slice(0, 30);
+    console.log(`Символов в массиве < 30 - Нужно добавить: ${testOffer}`); // Конец третего задания
+  }
 });
 
 
